@@ -1,14 +1,10 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deshpande Family Celebration</title>
     
-    <meta property="og:title" content="Deshpande Family Celebration">
-    <meta property="og:description" content="A triple celebration: Wedding, Retirement, and See-off on April 4th.">
-    <meta property="og:image" content="https://i.ibb.co/3GzVDjZ/image.jpg">
-
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -16,87 +12,94 @@
             --white: #ffffff;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        html { scroll-snap-type: y mandatory; }
         body { font-family: 'Lato', sans-serif; color: var(--white); background: #000; }
-        h1, h2 { font-family: 'Playfair Display', serif; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
-        /* background section styling */
         .section {
             position: relative;
             height: 100vh;
+            width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            background-attachment: fixed; /* This creates the parallax "behind the text" effect */
+            background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-size: cover;
-            padding: 20px;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            overflow: hidden;
         }
 
-        /* Dark overlay to make text readable */
+        /* --- ANIMATED SLIDESHOW FOR RECEPTION --- */
+        @keyframes slideshow {
+            0% { background-image: url('https://i.ibb.co/3GzVDjZ/image.jpg'); }
+            25% { background-image: url('https://i.ibb.co/xbzV7xB/image.jpg'); }
+            50% { background-image: url('https://i.ibb.co/TD5rvK9W/image.jpg'); }
+            75% { background-image: url('https://i.ibb.co/QjpC44w9/image.jpg'); }
+            100% { background-image: url('https://i.ibb.co/3GzVDjZ/image.jpg'); }
+        }
+
+        .bg-slideshow { animation: slideshow 16s infinite; }
+        .bg-retirement { background-image: url('https://i.ibb.co/nsZQKmsY/image.jpg'); }
+        .bg-seeoff { background-image: url('https://i.ibb.co/fdBLXcgV/image.jpg'); }
+        .bg-details { background-color: #111; scroll-snap-align: end; height: auto; min-height: 100vh; padding: 80px 20px; }
+
         .overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.5); 
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
             z-index: 1;
         }
 
-        .content {
-            position: relative;
-            z-index: 2;
-            max-width: 600px;
-        }
+        .content { position: relative; z-index: 2; max-width: 600px; width: 100%; padding: 20px; }
 
-        /* Specific Backgrounds - Using High Res Links */
-        .bg-hero { background-image: url('https://i.ibb.co/3GzVDjZ/image.jpg'); }
-        .bg-wedding { background-image: url('https://i.ibb.co/xbzV7xB/image.jpg'); }
-        .bg-retirement { background-image: url('https://i.ibb.co/nsZQKmsY/image.jpg'); }
-        .bg-seeoff { background-image: url('https://i.ibb.co/fdBLXcgV/image.jpg'); }
-        .bg-details { background-color: #1a1a1a; height: auto; padding: 100px 20px; }
-
-        h1 { font-size: 3rem; margin-bottom: 10px; }
-        h2 { font-size: 2.2rem; margin-bottom: 15px; }
-        .event-tag { text-transform: uppercase; letter-spacing: 4px; color: var(--gold); font-weight: bold; margin-bottom: 10px; display: block; }
-        .divider { width: 60px; height: 2px; background: var(--gold); margin: 20px auto; }
+        h1 { font-size: 3rem; margin-bottom: 10px; line-height: 1.1; }
+        h2 { font-size: 2.4rem; margin-bottom: 10px; }
+        h3 { font-size: 1.8rem; color: var(--gold); margin-top: 10px; }
+        
+        .event-tag { text-transform: uppercase; letter-spacing: 3px; color: var(--gold); font-weight: bold; margin-bottom: 15px; display: block; font-size: 0.85rem; }
+        .divider { width: 50px; height: 1px; background: var(--gold); margin: 25px auto; }
 
         .btn {
             display: inline-block;
             background: var(--gold);
             color: #000;
-            padding: 15px 35px;
+            padding: 16px 32px;
             text-decoration: none;
             font-weight: bold;
             margin-top: 20px;
-            border-radius: 2px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
         }
 
-        @media (max-width: 600px) {
-            h1 { font-size: 2.2rem; }
-            /* On mobile, fixed backgrounds can be buggy, so we set to scroll */
-            .section { background-attachment: scroll; } 
+        @media (min-width: 1024px) {
+            h1 { font-size: 4rem; }
+            h2 { font-size: 3.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="section bg-hero">
+    <div class="section bg-slideshow">
         <div class="overlay"></div>
         <div class="content">
-            <span class="event-tag">You're Invited</span>
+            <span class="event-tag">Welcome to</span>
             <h1>Deshpande Family Celebration</h1>
-            <p>Three Milestones. One Unforgettable Night.</p>
             <div class="divider"></div>
-            <p>April 4th, 2026</p>
+            <p style="letter-spacing: 2px;">04 . 04 . 2026</p>
         </div>
     </div>
 
-    <div class="section bg-wedding">
+    <div class="section bg-slideshow">
         <div class="overlay"></div>
         <div class="content">
             <span class="event-tag">Wedding Reception</span>
             <h2>Parool & Prathamesh</h2>
-            <p>Celebrate the beginning of our new chapter together.</p>
+            <p>Join us as we celebrate the start of our new journey</p>
             <div class="divider"></div>
         </div>
     </div>
@@ -104,9 +107,9 @@
     <div class="section bg-retirement">
         <div class="overlay"></div>
         <div class="content">
-            <span class="event-tag">Retirement</span>
+            <span class="event-tag">The Legacy</span>
             <h2>Honoring Mangesh</h2>
-            <p>Raising a toast to a lifetime of dedication and hard work.</p>
+            <p>To a lifetime of excellence and a well-deserved retirement</p>
             <div class="divider"></div>
         </div>
     </div>
@@ -116,25 +119,26 @@
         <div class="content">
             <span class="event-tag">New Adventure</span>
             <h2>Gauri's See-Off</h2>
-            <p>Celebrating memories as we transition to our new home.</p>
+            <p>Celebrating the memories as we shift to our new home</p>
             <div class="divider"></div>
         </div>
     </div>
 
     <div class="section bg-details">
         <div class="content">
-            <span class="event-tag">When & Where</span>
+            <span class="event-tag">Venue Details</span>
             <h2>Saturday 4th April, 2026</h2>
             <p>6:00 PM Onwards</p>
             <div class="divider"></div>
-            <h3>Flag's Banquet</h3>
-            <p>Evershine, Malad (W), Mumbai</p>
+            <h3>Flag's Banquet Evershine</h3>
+            <p style="font-size: 1.2rem; opacity: 0.9;">Malad (W), Mumbai</p>
             
-            <a href="https://maps.app.goo.gl/WVDuhKgFt8Dyd4Qv8" class="btn">Get Directions</a>
+            <a href="https://maps.app.goo.gl/WVDuhKgFt8Dyd4Qv8" class="btn">View Map</a>
             <br>
-            <a href="https://wa.me/91XXXXXXXXXX?text=Hi! We are attending the celebration!" class="btn" style="background: transparent; border: 1px solid var(--gold); color: var(--gold);">RSVP via WhatsApp</a>
+            <a href="https://wa.me/91XXXXXXXXXX?text=Hi! We are delighted to attend the celebration!" class="btn" style="background: transparent; border: 1px solid var(--gold); color: var(--gold);">RSVP via WhatsApp</a>
         </div>
     </div>
 
 </body>
 </html>
+
