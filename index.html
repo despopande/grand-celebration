@@ -4,141 +4,164 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deshpande Family Celebration</title>
-    
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --gold: #C5A059;
-            --white: #ffffff;
-        }
+        :root { --gold: #C5A059; --white: #ffffff; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         html { scroll-snap-type: y mandatory; }
-        body { font-family: 'Lato', sans-serif; color: var(--white); background: #000; }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        body { font-family: 'Lato', sans-serif; background: #000; color: var(--white); }
 
         .section {
             position: relative;
             height: 100vh;
             width: 100%;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
             scroll-snap-align: start;
             scroll-snap-stop: always;
-            overflow: hidden;
         }
 
-        /* --- ANIMATED SLIDESHOW FOR RECEPTION --- */
-        @keyframes slideshow {
-            0% { background-image: url('https://i.ibb.co/3GzVDjZ/image.jpg'); }
-            25% { background-image: url('https://i.ibb.co/xbzV7xB/image.jpg'); }
-            50% { background-image: url('https://i.ibb.co/TD5rvK9W/image.jpg'); }
-            75% { background-image: url('https://i.ibb.co/QjpC44w9/image.jpg'); }
-            100% { background-image: url('https://i.ibb.co/3GzVDjZ/image.jpg'); }
+        /* Image behaves like a real element that moves with your finger */
+        .bg-image {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: 0;
         }
-
-        .bg-slideshow { animation: slideshow 16s infinite; }
-        .bg-retirement { background-image: url('https://i.ibb.co/nsZQKmsY/image.jpg'); }
-        .bg-seeoff { background-image: url('https://i.ibb.co/fdBLXcgV/image.jpg'); }
-        .bg-details { background-color: #111; scroll-snap-align: end; height: auto; min-height: 100vh; padding: 80px 20px; }
 
         .overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.75));
             z-index: 1;
         }
 
-        .content { position: relative; z-index: 2; max-width: 600px; width: 100%; padding: 20px; }
+        .content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 25px;
+            max-width: 600px;
+            width: 100%;
+        }
 
-        h1 { font-size: 3rem; margin-bottom: 10px; line-height: 1.1; }
-        h2 { font-size: 2.4rem; margin-bottom: 10px; }
-        h3 { font-size: 1.8rem; color: var(--gold); margin-top: 10px; }
+        /* Reception Slideshow Animation */
+        .slideshow-container { width: 100%; height: 100%; position: absolute; z-index: 0; }
+        .slideshow-container img {
+            position: absolute;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            animation: slideFade 16s infinite;
+        }
+        .slideshow-container img:nth-child(1) { animation-delay: 0s; }
+        .slideshow-container img:nth-child(2) { animation-delay: 4s; }
+        .slideshow-container img:nth-child(3) { animation-delay: 8s; }
+        .slideshow-container img:nth-child(4) { animation-delay: 12s; }
+
+        @keyframes slideFade {
+            0%, 20% { opacity: 1; }
+            25%, 100% { opacity: 0; }
+        }
+
+        h1 { font-size: 3rem; font-family: 'Playfair Display'; line-height: 1.1; margin-bottom: 10px; }
+        h2 { font-size: 2.6rem; font-family: 'Playfair Display'; margin-bottom: 10px; }
+        h3 { font-size: 1.8rem; font-family: 'Playfair Display'; color: var(--gold); margin-top: 10px; }
         
-        .event-tag { text-transform: uppercase; letter-spacing: 3px; color: var(--gold); font-weight: bold; margin-bottom: 15px; display: block; font-size: 0.85rem; }
-        .divider { width: 50px; height: 1px; background: var(--gold); margin: 25px auto; }
-
-        .btn {
-            display: inline-block;
-            background: var(--gold);
-            color: #000;
-            padding: 16px 32px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 20px;
-            border-radius: 4px;
-            text-transform: uppercase;
-            font-size: 0.8rem;
+        .event-tag { text-transform: uppercase; letter-spacing: 4px; color: var(--gold); font-weight: bold; font-size: 0.85rem; margin-bottom: 15px; display: block; }
+        .divider { width: 60px; height: 1px; background: var(--gold); margin: 25px auto; }
+        
+        .btn { 
+            display: inline-block; 
+            background: var(--gold); 
+            color: #000; 
+            padding: 16px 35px; 
+            text-decoration: none; 
+            font-weight: bold; 
+            margin-top: 15px; 
+            border-radius: 4px; 
+            text-transform: uppercase; 
+            font-size: 0.85rem; 
+            letter-spacing: 1px;
         }
 
         @media (min-width: 1024px) {
-            h1 { font-size: 4rem; }
+            h1 { font-size: 4.5rem; }
             h2 { font-size: 3.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="section bg-slideshow">
+    <div class="section">
+        <img src="r1.jpg" class="bg-image" alt="Welcome">
         <div class="overlay"></div>
         <div class="content">
             <span class="event-tag">Welcome to</span>
             <h1>Deshpande Family Celebration</h1>
             <div class="divider"></div>
-            <p style="letter-spacing: 2px;">04 . 04 . 2026</p>
+            <p style="letter-spacing: 3px; font-size: 1.2rem;">04 . 04 . 2026</p>
         </div>
     </div>
 
-    <div class="section bg-slideshow">
+    <div class="section">
+        <div class="slideshow-container">
+            <img src="r1.jpg">
+            <img src="r2.jpg">
+            <img src="r3.jpg">
+            <img src="r4.jpg">
+        </div>
         <div class="overlay"></div>
         <div class="content">
             <span class="event-tag">Wedding Reception</span>
             <h2>Parool & Prathamesh</h2>
-            <p>Join us as we celebrate the start of our new journey</p>
             <div class="divider"></div>
+            <p>Celebrating Love and New Beginnings</p>
         </div>
     </div>
 
-    <div class="section bg-retirement">
+    <div class="section">
+        <img src="r5.jpg" class="bg-image" alt="Mangesh">
         <div class="overlay"></div>
         <div class="content">
             <span class="event-tag">The Legacy</span>
             <h2>Honoring Mangesh</h2>
-            <p>To a lifetime of excellence and a well-deserved retirement</p>
             <div class="divider"></div>
+            <p>A Lifetime of Excellence & Dedication</p>
         </div>
     </div>
 
-    <div class="section bg-seeoff">
+    <div class="section">
+        <img src="r6.jpg" class="bg-image" alt="Gauri">
         <div class="overlay"></div>
         <div class="content">
-            <span class="event-tag">New Adventure</span>
+            <span class="event-tag">The New Adventure</span>
             <h2>Gauri's See-Off</h2>
-            <p>Celebrating the memories as we shift to our new home</p>
             <div class="divider"></div>
+            <p>A Fond Farewell and Moving Forward</p>
         </div>
     </div>
 
-    <div class="section bg-details">
+    <div class="section">
+        <img src="r7.jpg" class="bg-image" alt="Family">
+        <div class="overlay" style="background: rgba(0,0,0,0.6);"></div>
         <div class="content">
             <span class="event-tag">Venue Details</span>
             <h2>Saturday 4th April, 2026</h2>
-            <p>6:00 PM Onwards</p>
+            <p style="font-size: 1.2rem;">6:00 PM Onwards</p>
             <div class="divider"></div>
             <h3>Flag's Banquet Evershine</h3>
-            <p style="font-size: 1.2rem; opacity: 0.9;">Malad (W), Mumbai</p>
+            <p style="font-size: 1.1rem; opacity: 0.9;">Malad (W), Mumbai</p>
             
-            <a href="https://maps.app.goo.gl/WVDuhKgFt8Dyd4Qv8" class="btn">View Map</a>
+            <a href="https://maps.app.goo.gl/WVDuhKgFt8Dyd4Qv8" class="btn">Get Directions</a>
             <br>
-            <a href="https://wa.me/91XXXXXXXXXX?text=Hi! We are delighted to attend the celebration!" class="btn" style="background: transparent; border: 1px solid var(--gold); color: var(--gold);">RSVP via WhatsApp</a>
+            <a href="https://wa.me/91XXXXXXXXXX?text=Hi! We are delighted to attend!" class="btn" style="background: transparent; border: 1px solid var(--gold); color: var(--gold);">RSVP via WhatsApp</a>
         </div>
     </div>
 
 </body>
 </html>
-
