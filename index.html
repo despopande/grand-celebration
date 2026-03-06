@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Milestone Celebration | April 4th</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #C5A059;
+            --dark: #232323;
+            --cream: #FAF9F6;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: 'Lato', sans-serif; 
+            background-color: var(--cream); 
+            color: var(--dark);
+            scroll-behavior: smooth;
+        }
+        h1, h2 { font-family: 'Playfair Display', serif; }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero { 
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+            url('https://i.ibb.co/3GzVDjZ/reception1.jpg'); /* Primary Reception Image */
+            background-size: cover; 
+            background-position: center;
+            color: white; 
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            max-width: 450px;
+            width: 100%;
+        }
+
+        /* IMAGE STYLES */
+        .section-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .event-tag {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.75rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+            display: block;
+            font-weight: bold;
+        }
+
+        .divider { width: 40px; height: 1px; background: var(--gold); margin: 25px auto; }
+
+        .btn {
+            display: inline-block;
+            background: var(--dark);
+            color: white;
+            padding: 16px 35px;
+            text-decoration: none;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            width: 100%;
+        }
+
+        .details-section { background-color: #1a1a1a; color: white; }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <span class="event-tag">You're Invited To</span>
+        <h1>A Grand Milestone</h1>
+        <p style="font-style: italic; margin-top: 10px;">Celebrating Love, Legacy & New Beginnings</p>
+        <div class="divider" style="background:white;"></div>
+        <p>04 . 04 . 2026</p>
+    </section>
+
+    <section>
+        <div class="card">
+            <div class="gallery">
+                <img src="https://i.ibb.co/3GzVDjZ/image.jpg" alt="Reception 1">
+                <img src="https://i.ibb.co/xbzV7xB/image.jpg" alt="Reception 2">
+                <img src="https://i.ibb.co/TD5rvK9W/image.jpg" alt="Reception 3">
+                <img src="https://i.ibb.co/QjpC44w9/image.jpg" alt="Reception 4">
+            </div>
+            <span class="event-tag">The Union</span>
+            <h2>Parool & Prathamesh</h2>
+            <p>We invite you to join us as we celebrate our wedding reception and the start of our life together.</p>
+            <div class="divider"></div>
+        </div>
+    </section>
+
+    <section style="background-color: #f4f1ea;">
+        <div class="card">
+            <img src="https://i.ibb.co/nsZQKmsY/image.jpg" class="section-img" alt="Mangesh">
+            <span class="event-tag">The Legacy</span>
+            <h2>Honoring Mangesh</h2>
+            <p>After years of dedication, please join us in honoring Mangesh on his well-deserved retirement.</p>
+            <div class="divider"></div>
+        </div>
+    </section>
+
+    <section>
+        <div class="card">
+            <img src="https://i.ibb.co/fdBLXcgV/image.jpg" class="section-img" alt="Gauri">
+            <span class="event-tag">The New Chapter</span>
+            <h2>Gauri's See-Off</h2>
+            <p>As we shift to our new home, help us celebrate Gauri's next adventure and the memories we carry forward.</p>
+            <div class="divider"></div>
+        </div>
+    </section>
+
+    <section class="details-section">
+        <span class="event-tag">When & Where</span>
+        <h2>Saturday 4th April, 2026</h2>
+        <p>6:00 PM Onwards</p>
+        
+        <div class="divider"></div>
+        
+        <h3>Flag's Banquet</h3>
+        <p>Evershine, Malad (W), Mumbai</p>
+        
+        <a href="https://maps.app.goo.gl/WVDuhKgFt8Dyd4Qv8" class="btn" style="border: 1px solid var(--gold); background: transparent; color: var(--gold); width: auto;">Open Google Maps</a>
+        
+        <div class="divider"></div>
+        
+        <a href="https://wa.me/919920542487?text=Hi! We are coming to the 3-in-1 celebration!" class="btn" style="background: var(--gold); width: auto; color: #000; font-weight: bold;">RSVP via WhatsApp</a>
+    </section>
+
+</body>
+</html>
