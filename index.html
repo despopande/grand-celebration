@@ -8,8 +8,10 @@
     <style>
         :root { --gold: #C5A059; --white: #ffffff; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-snap-type: y mandatory; }
-        body { font-family: 'Lato', sans-serif; background: #000; color: var(--white); }
+        
+        html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+        body { font-family: 'Lato', sans-serif; background: #000; color: var(--white); overflow-x: hidden; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
         .section {
             position: relative;
@@ -23,18 +25,32 @@
             scroll-snap-stop: always;
         }
 
-        .bg-image {
+        /* The Moving Background Effect */
+        .bg-wrap {
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            object-fit: cover;
             z-index: 0;
+            overflow: hidden;
         }
 
+        .bg-img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 3s ease-out; /* The toggle/pan speed */
+            transform: scale(1.1) translate(0, 0); /* Initial state */
+        }
+
+        /* Active class triggered by Scroll */
+        .is-visible .bg-img {
+            transform: scale(1.0) translate(0, 0);
+        }
+
+        /* Darker Overlay (approx 80-85% dark) */
         .overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.75));
+            background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.85));
             z-index: 1;
         }
 
@@ -42,33 +58,25 @@
             position: relative;
             z-index: 2;
             text-align: center;
-            padding: 25px;
+            padding: 30px;
             max-width: 600px;
             width: 100%;
         }
 
-        /* Reception Slideshow Animation */
-        .slideshow-container { width: 100%; height: 100%; position: absolute; z-index: 0; }
-        .slideshow-container img {
-            position: absolute;
+        /* Special logic for the final family photo (r7) */
+        .final-img {
             width: 100%; height: 100%;
             object-fit: cover;
-            opacity: 0;
-            animation: slideFade 16s infinite;
+            transition: all 2.5s cubic-bezier(0.25, 1, 0.5, 1);
         }
-        .slideshow-container img:nth-child(1) { animation-delay: 0s; }
-        .slideshow-container img:nth-child(2) { animation-delay: 4s; }
-        .slideshow-container img:nth-child(3) { animation-delay: 8s; }
-        .slideshow-container img:nth-child(4) { animation-delay: 12s; }
-
-        @keyframes slideFade {
-            0%, 20% { opacity: 1; }
-            25%, 100% { opacity: 0; }
+        .is-visible .final-img {
+            object-fit: contain;
+            transform: scale(0.92); /* Shows black bars to fit whole family */
         }
 
-        h1 { font-size: 3rem; font-family: 'Playfair Display'; line-height: 1.1; margin-bottom: 10px; }
-        h2 { font-size: 2.6rem; font-family: 'Playfair Display'; margin-bottom: 10px; }
-        h3 { font-size: 1.8rem; font-family: 'Playfair Display'; color: var(--gold); margin-top: 10px; }
+        h1 { font-size: 3rem; line-height: 1.1; margin-bottom: 10px; }
+        h2 { font-size: 2.6rem; margin-bottom: 10px; }
+        h3 { font-size: 1.8rem; color: var(--gold); margin-top: 10px; }
         .event-tag { text-transform: uppercase; letter-spacing: 4px; color: var(--gold); font-weight: bold; font-size: 0.85rem; margin-bottom: 15px; display: block; }
         .divider { width: 60px; height: 1px; background: var(--gold); margin: 25px auto; }
         .btn { display: inline-block; background: var(--gold); color: #000; padding: 16px 35px; text-decoration: none; font-weight: bold; margin-top: 15px; border-radius: 4px; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; }
@@ -81,35 +89,30 @@
 </head>
 <body>
 
-    <div class="section">
-        <img src="r1.jpg.png" class="bg-image" alt="Welcome">
+    <div class="section" id="s1">
+        <div class="bg-wrap"><img src="r1.jpg.png" class="bg-img" alt="Hero"></div>
         <div class="overlay"></div>
         <div class="content">
             <span class="event-tag">Welcome to</span>
             <h1>Deshpande Family Celebration</h1>
             <div class="divider"></div>
-            <p style="letter-spacing: 3px; font-size: 1.2rem;">04 . 04 . 2026</p>
+            <p style="letter-spacing: 3px;">04 . 04 . 2026</p>
         </div>
     </div>
 
-    <div class="section">
-        <div class="slideshow-container">
-            <img src="r1.jpg.png">
-            <img src="r2.jpg.png">
-            <img src="r3.jpg.png">
-            <img src="r4.jpg.png">
-        </div>
+    <div class="section" id="s2">
+        <div class="bg-wrap"><img src="r2.jpg.png" class="bg-img" alt="Reception"></div>
         <div class="overlay"></div>
         <div class="content">
             <span class="event-tag">Wedding Reception</span>
             <h2>Parool & Prathamesh</h2>
             <div class="divider"></div>
-            <p>Celebrating Love and New Beginnings</p>
+            <p>Celebrating Love & New Beginnings</p>
         </div>
     </div>
 
-    <div class="section">
-        <img src="r5.jpg.jpg" class="bg-image" alt="Mangesh">
+    <div class="section" id="s3">
+        <div class="bg-wrap"><img src="r5.jpg.jpg" class="bg-img" alt="Retirement"></div>
         <div class="overlay"></div>
         <div class="content">
             <span class="event-tag">The Legacy</span>
@@ -119,27 +122,27 @@
         </div>
     </div>
 
-    <div class="section">
-        <img src="r6.jpg.jpg" class="bg-image" alt="Gauri">
+    <div class="section" id="s4">
+        <div class="bg-wrap"><img src="r6.jpg.jpg" class="bg-img" alt="Adventure"></div>
         <div class="overlay"></div>
         <div class="content">
-            <span class="event-tag">The New Adventure</span>
+            <span class="event-tag">New Adventure</span>
             <h2>Gauri's See-Off</h2>
             <div class="divider"></div>
-            <p>A Fond Farewell and Moving Forward</p>
+            <p>A Fond Farewell & Future Paths</p>
         </div>
     </div>
 
-    <div class="section">
-        <img src="r7.jpg.png" class="bg-image" alt="Family">
-        <div class="overlay" style="background: rgba(0,0,0,0.6);"></div>
+    <div class="section" id="s5">
+        <div class="bg-wrap"><img src="r7.jpg.png" class="final-img" alt="Family"></div>
+        <div class="overlay" style="background: rgba(0,0,0,0.65);"></div>
         <div class="content">
             <span class="event-tag">Venue Details</span>
             <h2>Saturday 4th April, 2026</h2>
-            <p style="font-size: 1.2rem;">6:00 PM Onwards</p>
+            <p>6:00 PM Onwards</p>
             <div class="divider"></div>
             <h3>Flag's Banquet Evershine</h3>
-            <p style="font-size: 1.1rem; opacity: 0.9;">Malad (W), Mumbai</p>
+            <p style="opacity: 0.9;">Malad (W), Mumbai</p>
             
             <a href="https://maps.app.goo.gl/WVDuhKgFt8Dyd4Qv8" class="btn">Get Directions</a>
             <br>
@@ -147,5 +150,22 @@
         </div>
     </div>
 
+    <script>
+        // Trigger the animations when section enters view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                } else {
+                    entry.target.classList.remove('is-visible');
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
 </body>
 </html>
+
