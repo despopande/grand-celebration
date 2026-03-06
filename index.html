@@ -25,7 +25,6 @@
             scroll-snap-stop: always;
         }
 
-        /* The Moving Background Effect */
         .bg-wrap {
             position: absolute;
             top: 0; left: 0;
@@ -37,16 +36,14 @@
         .bg-img {
             width: 100%; height: 100%;
             object-fit: cover;
-            transition: transform 3s ease-out; /* The toggle/pan speed */
-            transform: scale(1.1) translate(0, 0); /* Initial state */
+            transition: transform 3s ease-out;
+            transform: scale(1.1) translate(0, 0);
         }
 
-        /* Active class triggered by Scroll */
         .is-visible .bg-img {
             transform: scale(1.0) translate(0, 0);
         }
 
-        /* Darker Overlay (approx 80-85% dark) */
         .overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -63,7 +60,6 @@
             width: 100%;
         }
 
-        /* Special logic for the final family photo (r7) */
         .final-img {
             width: 100%; height: 100%;
             object-fit: cover;
@@ -71,7 +67,7 @@
         }
         .is-visible .final-img {
             object-fit: contain;
-            transform: scale(0.92); /* Shows black bars to fit whole family */
+            transform: scale(0.92);
         }
 
         h1 { font-size: 3rem; line-height: 1.1; margin-bottom: 10px; }
@@ -80,6 +76,12 @@
         .event-tag { text-transform: uppercase; letter-spacing: 4px; color: var(--gold); font-weight: bold; font-size: 0.85rem; margin-bottom: 15px; display: block; }
         .divider { width: 60px; height: 1px; background: var(--gold); margin: 25px auto; }
         .btn { display: inline-block; background: var(--gold); color: #000; padding: 16px 35px; text-decoration: none; font-weight: bold; margin-top: 15px; border-radius: 4px; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; }
+        .blessing-text { font-style: italic; margin-top: 25px; font-size: 0.95rem; opacity: 0.8; line-height: 1.4; }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2.1rem; }
+        }
 
         @media (min-width: 1024px) {
             h1 { font-size: 4.5rem; }
@@ -112,29 +114,18 @@
     </div>
 
     <div class="section" id="s3">
-        <div class="bg-wrap"><img src="r5.jpg.jpg" class="bg-img" alt="Retirement"></div>
+        <div class="bg-wrap"><img src="r6.jpg.jpg" class="bg-img" alt="Second Innings"></div>
         <div class="overlay"></div>
         <div class="content">
-            <span class="event-tag">The Legacy</span>
-            <h2>Honoring Mangesh</h2>
+            <span class="event-tag">The New Adventure</span>
+            <h2>Gauri & Mangesh</h2>
             <div class="divider"></div>
-            <p>A Lifetime of Excellence & Dedication</p>
+            <p>Come celebrate their "Second Innings" as a beautiful new chapter begins.</p>
         </div>
     </div>
 
     <div class="section" id="s4">
-        <div class="bg-wrap"><img src="r6.jpg.jpg" class="bg-img" alt="Adventure"></div>
-        <div class="overlay"></div>
-        <div class="content">
-            <span class="event-tag">New Adventure</span>
-            <h2>Gauri's See-Off</h2>
-            <div class="divider"></div>
-            <p>A Fond Farewell & Future Paths</p>
-        </div>
-    </div>
-
-    <div class="section" id="s5">
-        <div class="bg-wrap"><img src="r7.jpg.png" class="final-img" alt="Family"></div>
+        <div class="bg-wrap"><img src="r7.jpg.png.jpg" class="final-img" alt="Family"></div>
         <div class="overlay" style="background: rgba(0,0,0,0.65);"></div>
         <div class="content">
             <span class="event-tag">Venue Details</span>
@@ -144,14 +135,18 @@
             <h3>Flag's Banquet Evershine</h3>
             <p style="opacity: 0.9;">Malad (W), Mumbai</p>
             
-            <a href="https://maps.app.goo.gl/WVDuhKgFt8Dyd4Qv8" class="btn">Get Directions</a>
+            <a href="https://maps.google.com/?q=Flags+Banquet+Evershine+Malad" class="btn">Get Directions</a>
             <br>
-            <a href="https://api.whatsapp.com/send?phone=919920542487&text=Hi! We are delighted to attend!" class="btn" ... >RSVP via WhatsApp</a>
+            <a href="https://api.whatsapp.com/send?phone=919920542487&text=Hi! We are delighted to attend!" class="btn" style="background: transparent; border: 1px solid var(--gold); color: var(--gold);">RSVP via WhatsApp</a>
+            
+            <p class="blessing-text">
+                "Your presence is our greatest gift.<br>
+                We request no gifts other than your blessings."
+            </p>
         </div>
     </div>
 
     <script>
-        // Trigger the animations when section enters view
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
